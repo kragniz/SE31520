@@ -1,0 +1,20 @@
+---
+- hosts: all
+  gather_facts: false
+  tasks:
+    - name: install packages for ansible support
+      sudo: true
+      raw: dnf -y -e0 -d0 install python python-dnf yum-utils
+
+    - name: install rails
+      sudo: true
+      dnf: pkg={{item}} state=latest
+      with_items:
+          - ruby
+          - gcc
+          - mysql-devel
+          - ruby-devel
+          - rubygems
+          - libxml2-devel
+          - libxslt-devel
+          - rubygem-nokogiri
