@@ -11,10 +11,5 @@
       dnf: pkg={{item}} state=latest
       with_items:
           - ruby
-          - gcc
-          - mysql-devel
-          - ruby-devel
-          - rubygems
-          - libxml2-devel
-          - libxslt-devel
           - rubygem-nokogiri
+          - rubygem-rails
