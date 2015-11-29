@@ -4,7 +4,7 @@
   tasks:
     - name: install packages for ansible support
       sudo: true
-      raw: dnf -y -e0 -d0 install python python-dnf yum-utils
+      raw: dnf -y -e0 -d0 install python python-dnf yum-utils python-pip
 
     - name: install rails
       sudo: true
@@ -13,3 +13,7 @@
           - ruby
           - rubygem-nokogiri
           - rubygem-rails
+
+    - name: install supplier-api
+      sudo: true
+      command: pip install -e . chdir=/vagrant/service/
