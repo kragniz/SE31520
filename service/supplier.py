@@ -1,14 +1,30 @@
 #!/usr/bin/env python
-from flask import Flask
+
+import argparse
+
+from flask import Flask, jsonify
+import yaml
 
 app = Flask(__name__)
 
-@app.route('/')
+wines = []
+
+@app.route('/', methods=['GET'])
 def index():
-    return "Hello, World!"
+    return jsonify({'user': 'anon'})
 
 def main():
-    app.run(host='0.0.0.0')
+    parser = argparse.ArgumentParser()
+    parser.add_argument('wines', help='wine yaml file')
+    args = parser.parse_args()
+
+    with open(args.wines) as f:
+        y = yaml.load(f)
+
+    wines = y.get('wines', [])
+
+    app.run(host='0.0.0.0',
+            debug=True)
 
 if __name__ == '__main__':
     main()
