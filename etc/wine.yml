@@ -8,3 +8,13 @@ wines:
       size: 0
       price: 0.0
       picture: http://example.com/818a97140ee28da6.jpg
+
+    - name: 'Grapes'
+      short-description: ''
+      long-description: ''
+      country: ''
+      grape-type: ''
+      vegetarian: true
+      size: 2
+      price: 3.5
+      picture: http://example.com/938b978103e58da6.jpg
