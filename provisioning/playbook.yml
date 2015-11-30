@@ -13,9 +13,14 @@
           - ruby
           - rubygem-rails
           - gcc
+          - zlib-devel
           - sqlite-devel
           - ruby-devel
           - rubygems
+          - nodejs
+
+    - name: bundle install
+      command: bundle install chdir=/vagrant/wine-application
 
     - name: install supplier-api
       sudo: true
