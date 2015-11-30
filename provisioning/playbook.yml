@@ -17,3 +17,7 @@
     - name: install supplier-api
       sudo: true
       command: pip install -e . chdir=/vagrant/service/
+
+    - name: redirect port 80 to 8080
+      sudo: true
+      command: iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
