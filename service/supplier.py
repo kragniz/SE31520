@@ -11,11 +11,21 @@ app = Flask(__name__)
 
 wines = []
 
-@app.route('/wines', methods=['GET'])
-def get_wines():
-    return jsonify({'wines': [wine.get('id') for wine in wines]})
+@app.route('/api/wines/<string:wine_id>', methods=['GET'])
+def get_wine(wine_id):
+    for wine in wines:
+        if wine.get('id') == wine_id:
+            return jsonify({'wine': wine})
 
-@app.route('/', methods=['GET'])
+@app.route('/api/wines', methods=['GET'])
+def get_wines():
+    return jsonify({
+        'wines': [
+            {wine.get('id'): wine.get('name')} for wine in wines
+        ]
+    })
+
+@app.route('/api', methods=['GET'])
 def index():
     return jsonify({'user': 'anon'})
 
