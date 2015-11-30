@@ -30,18 +30,27 @@ def index():
     return jsonify({'user': 'anon'})
 
 def get_hash(d):
+    '''Return a deterministic hash of a dictionary'''
     hash_object = hashlib.sha1(json.dumps(d))
     return hash_object.hexdigest()
 
-def main():
+def get_args():
+    '''Parse command line arguments'''
     parser = argparse.ArgumentParser()
     parser.add_argument('wines', help='wine yaml file')
-    args = parser.parse_args()
+    return parser.parse_args()
 
-    with open(args.wines) as f:
+def get_wine_data(filename):
+    '''Return a dict containing data loaded from config file'''
+    with open(filename) as f:
         y = yaml.load(f)
 
-    wines_data = y.get('wines', [])
+    return y.get('wines', [])
+
+def main():
+    args = get_args()
+    wines_data = get_wine_data(args.wines)
+
     for wine in wines_data:
         sha1 = get_hash(wine)
         wine['id'] = sha1[0:16]
