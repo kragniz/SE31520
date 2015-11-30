@@ -11,8 +11,11 @@
       dnf: pkg={{item}} state=latest
       with_items:
           - ruby
-          - rubygem-nokogiri
           - rubygem-rails
+          - gcc
+          - sqlite-devel
+          - ruby-devel
+          - rubygems
 
     - name: install supplier-api
       sudo: true
