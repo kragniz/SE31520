@@ -17,7 +17,7 @@ def get_wine(wine_id):
         if wine.get('id') == wine_id:
             return jsonify({'wine': wine})
 
-@app.route('/api/wines', methods=['GET'])
+@app.route('/api/wines/', methods=['GET'])
 def get_wines():
     return jsonify({
         'wines': [
@@ -25,7 +25,7 @@ def get_wines():
         ]
     })
 
-@app.route('/api', methods=['GET'])
+@app.route('/api/', methods=['GET'])
 def index():
     return jsonify({'user': 'anon'})
 
