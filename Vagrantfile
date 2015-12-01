@@ -8,7 +8,7 @@ Vagrant.configure(2) do |config|
       ansible.playbook = "provisioning/common.yml"
   end
 
-  config.vm.define :app do |app|
+  config.vm.define :app, primary: true do |app|
       app.vm.network "private_network", ip: "192.168.100.101"
 
       app.vm.provision "ansible" do |ansible|
