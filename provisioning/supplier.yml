@@ -1,0 +1,7 @@
+---
+- hosts: all
+  gather_facts: false
+  tasks:
+    - name: install supplier-api
+      sudo: true
+      command: pip install -e . chdir=/vagrant/service/

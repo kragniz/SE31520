@@ -1,0 +1,11 @@
+---
+- hosts: all
+  gather_facts: false
+  tasks:
+    - name: install packages for ansible support
+      sudo: true
+      raw: dnf -y -e0 -d0 install python python-dnf yum-utils python-pip
+
+    - name: redirect port 80 to 8080
+      sudo: true
+      command: iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
