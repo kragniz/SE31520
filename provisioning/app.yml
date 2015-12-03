@@ -17,3 +17,6 @@
 
     - name: bundle install
       command: bundle install chdir=/vagrant/wine-application
+
+    - name: seed db
+      command: rake db:seed chdir=/vagrant/wine-application
