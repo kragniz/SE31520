@@ -4,8 +4,13 @@ class WinesController < ApplicationController
   # GET /wines
   # GET /wines.json
   def index
-    #@wines = Wine.all
-    @wines = Wine.page(params[:page]).order(:name).per(9)
+    @wines = Wine.all
+    if params[:search]
+        @wines = Wine.search(params[:search])
+        @wines = Kaminari.paginate_array(@wines).page(params[:page]).per(9)
+    else
+        @wines = Wine.page(params[:page]).order(:name).per(9)
+    end
   end
 
   # GET /wines/1
